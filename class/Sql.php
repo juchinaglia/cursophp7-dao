@@ -32,14 +32,17 @@ private function setParams($statment, $parameters=array()){
 
 	$stmt = $this->conn->prepare($rawQuery);
 	
-	$this->setParam($stmt, $params);
+	$this->setParams($stmt, $params);
 
-	$stmt-> execute(); 
+	 $stmt-> execute(); 
 
-	return $stmt;
+	 return $stmt;
+
+	
 }
 
-	public function select($rawQuery, $params=array()){
+	public function select($rawQuery, $params= array())
+	{
 
 		$stmt = $this->query($rawQuery, $params);
 		return $stmt->fetchAll(PDO::FETCH_ASSOC);

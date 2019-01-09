@@ -5,7 +5,7 @@ require_once ("config.php");
 
 // $sql = new Sql();
 
-// $usuarios = $sql->select("SELECT*FROM tb_usuario");
+// $usuarios = $sql->select("SELECT*FROM tb_usuarios");
 
 // echo json_encode($usuarios); 
  
@@ -28,8 +28,34 @@ require_once ("config.php");
 
 // echo json_encode($busca);
 
+// $usuario = new Usuario();
+// $usuario->login("root", "1234");
+
+// echo $usuario;
+
+//CRIANDO UM NOVO USUARIO
+
+// $aluno = new Usuario("aluno", "@lun@");
+
+// $aluno->insert();
+
+// echo $aluno;
+
+//ATUALIZANDO
+// $usuario = new usuario();
+
+// $usuario->loadById(1);
+
+// $usuario->update("professor", "1234567");
+
+// echo $usuario;
+
+//DELETANDO
+
 $usuario = new Usuario();
-$usuario->login("root", "1234");
+$usuario->loadById(1);
+
+$usuario->delete();
 
 echo $usuario;
  ?>

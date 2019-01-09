@@ -1,52 +1,14 @@
 <?php 
 
 
-class Sql extends PDO {
+spl_autoload_register(function($class_name){
 
-private $conn;
+	$filename = "class".DIRECTORY_SEPARATOR.$class_name.".php";
 
-public function __construct(){
+	if (file_exists($filename)){
 
-	$this->conn = new PDO ("mysql:host=localhost; dbname=dbphp7", "root", "");
-
-}
-
-private function setParams($statement, $parameters=array()){
-
-
-
-	foreach ($parameters as $key => $value) {
-		
-		$this->setParam($statement, $key, $value);
+		require_once($filename);
 	}
-}
-
-	private function setParam ($statement, $key, $value){
-
-		$statement->bindParam($key, $value);
-
-	}
-	
-	public function query($rawQuery, $params=array()){
-
-
-	$stmt = $this->conn->prepare($rawQuery);
-	
-	$this->setParam($stmt, $params);
-
-	$stmt->execute(); 
-
-	return $stmt;
-}
-
-	public function select($rawQuery, $params=array()){
-
-		$stmt = $this->query($rawQuery, $params);
-		return $stmt->fetchAll(PDO::FETCH_ASSOC);
-	}
-}
-
-
-
+});
 
  ?>
